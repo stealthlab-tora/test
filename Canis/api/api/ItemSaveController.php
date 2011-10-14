@@ -10,19 +10,15 @@ require_once("../lib/util/checkUtil.php");
 // get logger
 $log = Logger::getLogger('ItemSaveController');
 
-// define return value
-$result = true;
-
 // receive image files, save it and get image Id from DB
-$imageIds = handleImageUpload();
+$imageIds = uploadImageToServer();
 $filenames = array("thumbnail" => $imageIds["thumbnail"] . ".jpg", "image" => $imageIds["image"] . ".jpg");
 
 // store image to Azure 
 $savedUrls = saveImageToAzure($filenames);
 if (!checkNotEmpty($savedUrls["thumbnail"]) || !checkNotEmpty($savedUrls["image"])) {
 	$log->error("Saving URL is failed.");
-	echo("false");
-	exit();
+	die("false");
 }
 
 // save image URL to server

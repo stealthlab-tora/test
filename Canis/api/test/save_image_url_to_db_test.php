@@ -10,10 +10,10 @@ if (empty($_POST)) {
 ?>
 Pushing save button, thumbnail URL and image URL will be saved.<br />
 <form action="" method="post">
-Thumbnail Id  : <input type="test" name="thumbnailid" />
-Thumbnail URL : <input type="test" name="thumbnailurl" />
-image Id      : <input type="test" name="imageid" />
-image URL     : <input type="test" name="imageurl" />
+Thumbnail Id  : <input type="text" name="thumbnailid" />
+Thumbnail URL : <input type="text" name="thumbnailurl" />
+image Id      : <input type="text" name="imageid" />
+image URL     : <input type="text" name="imageurl" />
 <input type="submit" value="save" />
 </form>
 <?php

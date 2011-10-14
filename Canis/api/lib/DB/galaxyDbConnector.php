@@ -1,35 +1,35 @@
 <?php
-
 class galaxyDbConnector
 {
-	// DB connect information
-	const DOTCLOUD_DB_MYSQL_HOST     = "galaxydb-tora.dotcloud.com";
-	const DOTCLOUD_DB_MYSQL_USER     = "galaxy_user";
-	const DOTCLOUD_DB_MYSQL_PASSWORD = "cool";
-	const DOTCLOUD_DB_MYSQL_DBNAME   = "galaxy";
-	const DOTCLOUD_DB_MYSQL_PORT     = 15770;
-	
 	// save DB connection
 	private static $_db_connection = null;
 	
 	// constructor
 	private function __construct()
 	{
-		self::$_db_connection =  new mysqli(self::DOTCLOUD_DB_MYSQL_HOST,
-		                                    self::DOTCLOUD_DB_MYSQL_USER,
-		                                    self::DOTCLOUD_DB_MYSQL_PASSWORD,
-		                                    self::DOTCLOUD_DB_MYSQL_DBNAME,
-		                                    self::DOTCLOUD_DB_MYSQL_PORT);
-		    
-// TODO : consider the process in case of DB connect error
-	   if (self::$_db_connection->connect_error != null) {
-		    die("DB connect error! : [" . self::$_db_connection->connect_errno . "]" .
-                                          self::$_db_connection->connect_error);
-		}
+		// get DB info from environment.json
+		$filepath = $_SERVER['HOME'].'/environment.json';
+		$env = json_decode(file_get_contents($filepath), true);
+		
+		// DB info is saved like "DOTCLOUD_DATA_MYSQL_xxx"
+		$host = $env['DOTCLOUD_DATA_MYSQL_HOST'];
+		$port = $env['DOTCLOUD_DATA_MYSQL_PORT'];
+		$dbname = 'galaxy';
+		$dsn = 'mysql:host='.$host.';port='.$port.';dbname='.$dbname;
+		$user = $env['DOTCLOUD_DATA_MYSQL_LOGIN'];
+		$pass = $env['DOTCLOUD_DATA_MYSQL_PASSWORD'];
 
-		return self::$_db_connection;
+		try {
+    		// create PDO
+	    	self::$_db_connection = new PDO($dsn, $user, $pass);
+		    self::$_db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+		}catch(PDOException $e) {
+			die("DB connection failed : " . $e->getMessage());
+		}
 	}
-	
+
+
 	// getting DB connection 
 	public static function getConnection()
 	{
