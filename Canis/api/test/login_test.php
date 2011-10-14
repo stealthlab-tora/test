@@ -18,7 +18,7 @@ Password      : <input type="password" name="password" /><br />
     require_once("../api/galaxyLogin.php");
 
     $result = galaxyLogin($_POST["email"], $_POST["password"]);
-
+    
     if ($result) {
         echo("Login succeeded!");
     } else {

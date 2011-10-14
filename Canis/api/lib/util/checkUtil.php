@@ -14,6 +14,7 @@ function checkNotEmpty($string)
 // email checker
 function checkEmail($email)
 {
+	// this regular exception is from HTML_QuickForm_Rule_Email class in pear/HTML_QuickForm-3.2.13 package 
     $regex = '/^((\"[^\"\f\n\r\t\v\b]+\")|([\w\!\#\$\%\&\'\*\+\-\~\/\^\`\|\{\}]+(\.[\w\!\#\$\%\&\'\*\+\-\~\/\^\`\|\{\}]+)*))@((\[(((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9])))\])|(((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9])))|((([A-Za-z0-9\-])+\.)+[A-Za-z\-]+))$/D';
     return preg_match($regex, $email);
 }
@@ -23,7 +24,7 @@ function checkEmail($email)
 function checkPassword($password)
 {
 	// length check
-	if (strlen($password) >= 8 && strlen($pasword) <= 32) {
+	if (strlen($password) >= 8 && strlen($password) <= 32) {
 		
 		// character check
 	    if (preg_match('/^[\!-\~]+$/D', $password)) {

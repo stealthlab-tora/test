@@ -6,19 +6,22 @@
 </head>
 <body>
 <?php
-if (empty($_POST)) {
+if (empty($_FILES)) {
 ?>
-<form action="" method="post">
-Email Address : <input type="text" name="email" /><br />
+<form action="./upload_image_to_server_test.php" method="post" enctype="multipart/form-data">
 Thumbnail   : <input type="file" name="imageThumbnail" /><br />
 Large image : <input type="file" name="image" /><br />
 <input type="submit" value="upload" />
 </form>
 <?php
 } else {
-//    require("../api/uploadImageToServer.php");
+    require("../api/uploadImageToServer.php");
 
-}
+    $result = uploadImageToServer();
+
+    echo("Thumbnail ID is : " . $result["thumbnail"]);
+    echo("<br />");
+    echo("Image ID is : " . $result["image"]);}
 ?>
 </body>
 </html>

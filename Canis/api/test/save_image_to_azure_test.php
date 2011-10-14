@@ -23,14 +23,15 @@ Pushing save button, cool1.jpg and cool2.jpg will be saved.
 
     $result = saveImageToAzure($filenames);
 
-    if ($result["thumbnail"] == "cool1.jpg" && $result["image"] == "cool2.jpg") {
+    if ($result["thumbnail"] == "http://rakutensfadc.blob.core.windows.net/galaxy/cool1.jpg" &&
+                      $result["image"] == "http://rakutensfadc.blob.core.windows.net/galaxy/cool2.jpg") {
         echo("Saving image succeeded.");
     } else {
     	die("Saving image failed.");
     }
 
 
-    // delte test data
+    // delete test data
     
     // include Windows azure library
     require_once("../lib/PHPAzure/library/Microsoft/WindowsAzure/Storage.php");
@@ -43,7 +44,6 @@ Pushing save button, cool1.jpg and cool2.jpg will be saved.
     $accountKey    = "l+a4G6TsojYT+6HHHzDThyvIasaldhWZkY7g6QmCOxMnmS2GMmT74wpgpSvsnaNMuyXUYV/xXK9GuHitABbtHA==";
     $storageBlob   = new Microsoft_WindowsAzure_Storage_Blob($host, $accountName, $accountKey);
     $containerName = "galaxy";
-    $tempImageDir  = "../temp_image/";
 
     // delete blob
     $storageBlob->setContainerAcl($containerName, Microsoft_WindowsAzure_Storage_Blob::ACL_PUBLIC);
