@@ -22,7 +22,7 @@ function saveImageToAzure($filenames) {
     }
     
     // push blob
-    $storageBlob->setContainerAcl($containerName, Microsoft_WindowsAzure_Storage_Blob::ACL_PUBLIC);     
+    $storageBlob->setContainerAcl($containerName, Microsoft_WindowsAzure_Storage_Blob::ACL_PUBLIC);
     $thumnailBlobProperties = $storageBlob->putBlob($containerName, $filenames["thumbnail"], $tempImageDir . $filenames["thumbnail"]);
     $imageBlobProperties    = $storageBlob->putBlob($containerName, $filenames["image"], $tempImageDir . $filenames["image"]);
     

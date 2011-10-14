@@ -3,7 +3,7 @@
 // include php files
 require_once('../lib/Logger/logger.php');
 require_once('../lib/util/checkUtil.php');
-require("./galaxyLogin.php");
+require_once("./galaxyLogin.php");
 
 // get logger
 $log = Logger::getLogger('LoginController');
