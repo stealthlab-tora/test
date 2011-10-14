@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<log4php:configuration xmlns:log4php="http://logging.apache.org/log4php/">
+    <appender name="rollingFile" class="LoggerAppenderFile">
+      <param name="file" value="../logs/galaxy-api.log" />
+      <layout class="LoggerLayoutTTCC" />
+    </appender>
+    <root>
+        <level value="INFO" />
+        <appender_ref ref="rollingFile" />
+    </root>
+</log4php:configuration>

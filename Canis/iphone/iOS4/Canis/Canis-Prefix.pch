@@ -1,0 +1,152 @@
+//
+// Prefix header for all source files of the 'Canis' target in the 'Canis' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iPhone SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
+
+#import "Commons.h"
+#import "Logger.h"
+
+/**
+ * Application bundle identifier for the KeyChain Feature
+ */
+
+#define kBundleIdentifier @"5T73725465.com.ubira.com"
+
+/**
+ *	An enum
+ *	Enum represent all tabs in tab controller.
+ */
+typedef enum {
+	kHomeTab = 0,	/**< Home tab */
+	kSearchTab,		/**< Search tab */
+	kFavouritesTab,	/**< Favourites tab */
+	kProfileTab,	/**< Profile tab */
+	kCouponsTab		/**< Coupons tab */
+} UbiraTabMenu;
+
+/** Common **/
+#define kUserId				@"userid"
+#define kError				@"error"
+#define kSuccess			@"success"
+#define kId                 @"id"
+#define kDescription        @"description"
+#define kImageUrl			@"img_url"
+#define kProductId			@"productid"
+#define	kName				@"name"
+#define kAddress			@"address"
+#define kSCNavigationBarTintColor [UIColor colorWithRed:.6 green:0.0 blue:0.0 alpha:1.0]
+#define kGrayBackGroundImg  @"commonbg.png" 
+#define kCommonRedBtnImg    @"CommonRedBtn.png"
+
+#define KEmptyString        @""
+#define kAutoLoginKey       @"loginStatus"
+
+#define kLocationUpdatedNotificationKey       @"locationUpdatedNotificationkey"
+#define kCheckInCheckOutNotificationKey       @"checkInCheckOutNotificationKey"
+#define kViewUpDownAnimationDuration          0.3f 
+
+//#define kLatitude			@"lat"
+//#define kLongitude			@"long"
+
+/** Coupon **/
+#define kCoupon				@"coupon"
+#define kCoupons			@"coupons"
+#define kCouponImageUrl		@"coupon_img_url"
+#define kCouponCode			@"couponcode"
+#define kCreateDate			@"create_date"
+#define kExpirationDate		@"expiration_date"
+#define kIsActive			@"isactive"
+#define kMerchantId			@"merchantid"
+#define kDeals				@"deal"
+#define kAccepted           @"accepted"
+
+/** Store **/
+#define kStore				@"store"
+#define kStores				@"stores"
+#define kStoreCreateDate	@"create"
+#define kLat				@"lat"
+#define kLong				@"long"
+#define kPhone				@"phone"
+#define kStoreId			@"storeid"
+#define kMerchants			@"merchants"
+#define kInStore            @"instore"
+#define kStoreAddress		@"address"
+#define kLocationServiceNotification @"LocationServiceNotification"
+#define kRegionExitNotification      @"RegionExitNotification"
+#define kCheckedInRegion    @"checkedInRegion"
+#define kNoImagesImg        @"Noimages.png"
+
+/**	Product **/
+#define kProduct			@"product"
+#define kReleatedProducts	@"related"
+#define kDetailLink			@"detail_link"
+#define kMerchantId			@"merchantid"
+#define kPrice				@"price"
+
+
+/** Favourites **/
+#define kFavourites         @"favorites"
+
+#define kRatings            @"rating"
+#define kReviews            @"reviews"
+
+/** Error Codes **/
+#define kNoCouponExist      50001
+#define kNoMerchantFound    50002
+#define kUserExist          50003
+#define kFavouritesExist    50004
+#define kNoReviewExist      50005
+#define kNoFavouritesExist  50006
+#define kAddNewStoreErr		50007
+#define kStoreCheckInErr	50008
+#define kStoreListErr		50009
+#define kProductDetailErr	50010
+#define kNoUserExist		50011
+#define kNoOfferFound		50012
+#define kNoNoticeFound		50013
+#define kLocationServiceErr	50014
+#define kNoNetworkErr       50015
+#define kInvalidDataErr     50016
+#define kNoServerResponce   50017
+
+// API
+#define kCanisServerUrl             @"http://galaxy-goku.dotcloud.com/api"
+
+#define kPost                       @"POST"
+#define kGet                        @"GET"
+#define kApplicationFormEncoded     @"application/x-www-form-urlencoded"
+#define	kContentType                @"Content-Type"
+#define kDateFormat                 @"yyyyMMddHHmmss"
+#define kDateFormatRevised          @"yyyy-MM-dd HH:mm:ss"
+#define kDateFormatDisplay          @"yyyy/MM/dd"
+#define kCheckImage                 @"mark.png"
+#define kUnCheckImage               @"unMark.png"
+
+//User Anyalitics
+#define kAnyaliticsHomeScreen               @"Home Screen"
+#define kAnyaliticsOfferDetailsScreen       @"Offer Details Screen"
+#define kAnyaliticsLoginScreen              @"Login Screen"
+#define kAnyaliticsRegisterScreen           @"New User Register Screen"
+#define kAnyaliticsForgotPasswordScreen     @"Forgot Password Screen"
+#define kAnyaliticsStoreListScreen          @"Store List Screen"
+#define kAnyaliticsAddNewStoreScreen        @"New Store Screen"
+#define kAnyaliticsSearchScreen             @"Search Screen"
+#define kAnyaliticsSearchResultScreen       @"Search Result Screen"
+#define kAnyaliticsProductDetailScreen      @"Product Details Screen"
+#define kAnyaliticsUpdatePriceScreen        @"Update Price Screen"
+#define kAnyaliticsUserProductSummaryScreen @"Product Summary Screen"
+#define kAnyaliticsProductReviewScreen      @"Product Review Screen"
+#define kAnyaliticsFavoritesScreen          @"Favorites Screen"
+#define kAnyaliticsProfileScreen            @"Profile Screen"
+#define kAnyaliticsCouponScreen             @"Coupons Screen"

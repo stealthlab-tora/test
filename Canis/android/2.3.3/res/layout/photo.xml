@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content">
+ 
+	<TextView android:text="@string/title" android:layout_height="wrap_content" android:id="@+id/textView1" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_width="wrap_content" android:layout_alignParentTop="true" android:layout_alignParentLeft="true"></TextView>
+	<LinearLayout android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/LinearLayout01" android:orientation="vertical" android:layout_alignParentTop="true" android:layout_alignParentRight="true" android:paddingTop="20dp">
+		<Button android:layout_height="wrap_content" android:id="@+id/takePhotoButton" android:text="@string/takePhoto" android:layout_width="match_parent" android:layout_gravity="center_vertical"></Button>
+		<Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/chooseButton" android:text="@string/choose" android:layout_gravity="center_vertical"></Button>
+	</LinearLayout>
+	<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:id="@+id/linearLayout2" android:layout_height="fill_parent">
+		<TextView android:id="@+id/textView2" android:text="@string/thumbnail" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_marginTop="80dp" android:layout_marginLeft="20dp"></TextView>
+		<ImageView android:id="@+id/imageThumbnailView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:layout_marginLeft="25dp" android:layout_gravity="left"></ImageView>
+		<TextView android:id="@+id/textView3" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:text="@string/image" android:layout_width="fill_parent" android:layout_marginLeft="20dp" android:layout_marginTop="15dp"></TextView>
+		<ImageView android:id="@+id/imageLargeView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="left" android:layout_marginTop="5dp" android:layout_marginLeft="25dp"></ImageView>
+	</LinearLayout>
+	<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:id="@+id/buttonSendImageToServer" android:text="@string/sendImageToServer"></Button>
+
+
+</RelativeLayout>

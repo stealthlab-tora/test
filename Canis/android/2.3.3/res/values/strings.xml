@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">2.3.3</string>
+    <string name="title">template</string>
+    <string name="login">Login</string>
+    <string name="user">Username</string>
+    <string name="password">Password</string>
+    <string name="email_address">Email Address</string>
+    <string name="remember_username">remember Username</string>
+    <string name="remember_password">remember Password</string>
+    <string name="forget">forgot Password?</string>
+    <string name="newuser">New User? Regist here!</string>
+    <string name="regist">Register Here!</string>
+    <string name="buy">Buy</string>
+    <string name="sell">Sell</string>
+    <string name="photo">PhotoUpload</string>
+    <string name="takePhoto">Take a Photo</string>
+    <string name="choose">Choose a Photo</string>
+    <string name="thumbnail">thumbnail</string>
+    <string name="image">image</string>
+    <string name="sendImageToServer">Send Image</string>
+    <string name="remember_email">remember Email</string>
+</resources>
