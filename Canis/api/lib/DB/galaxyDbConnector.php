@@ -21,7 +21,7 @@ class galaxyDbConnector
 
 		try {
     		// create PDO
-	    	self::$_db_connection = new PDO($dsn, $user, $pass);
+	    	self::$_db_connection = new PDO($dsn, $user, $pass, array(PDO::ATTR_PERSISTENT => true));
 		    self::$_db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		}catch(PDOException $e) {

@@ -1,6 +1,4 @@
 <?php
-// TODO : investigate whether PHP is multithread or not
-
 // include php files
 require_once("../lib/Logger/logger.php");
 require_once("../lib/DB/galaxyDbConnector.php");
@@ -15,7 +13,7 @@ function galaxyLogin($email, $password) {
 	
     // DB connect
     $db_connection = galaxyDbConnector::getConnection();
-
+    
     // create query
     // TODO : constant ni suru
     $query_array   = array();
