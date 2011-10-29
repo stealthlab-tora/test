@@ -1,5 +1,8 @@
 <?php
 
+// include libraries
+require_once $_SERVER["DOCUMENT_ROOT"] . "/lib/logger/Logger.php";
+
 class galaxyDbConnector
 {
 	// save DB connection
@@ -33,7 +36,7 @@ class galaxyDbConnector
 		    self::$_db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		}catch(PDOException $e) {
-			die("DB connection failed : " . $e->getMessage());
+			Logger::write("DB connection failed.", $e);
 		}
 	}
 
@@ -44,7 +47,7 @@ class galaxyDbConnector
 		if (self::$_db_connection == null) {
 			new self();
 		}
-		
+
 		return self::$_db_connection;
 	}
 }

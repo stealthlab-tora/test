@@ -5,10 +5,16 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/lib/phpazure/library/Microsoft/Window
 require_once $_SERVER["DOCUMENT_ROOT"] . "/lib/phpazure/library/Microsoft/WindowsAzure/Credentials/CredentialsAbstract.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/lib/phpazure/library/Microsoft/WindowsAzure/Storage/Blob.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/constant/ItemConstant.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/constant/CommonConstant.php";
+
 
 // function to save galaxy images to Azure
 function saveImageToAzure($filenames) {
     
+	Logger::write("Image files will be saved to Windows Azure from now.");
+	
+	$result = array();
+	
     // connection setting
     $host          = "blob.core.windows.net";
     $accountName   = "rakutensfadc";
@@ -21,15 +27,37 @@ function saveImageToAzure($filenames) {
         $storageBlob->createContainer($containerName);
     }
     
-    // push blob
+    // Push blob
     $storageBlob->setContainerAcl($containerName, Microsoft_WindowsAzure_Storage_Blob::ACL_PUBLIC);
-    $thumnailBlobProperties = $storageBlob->putBlob($containerName, $filenames["thumbnail"], FILE_UPLOAD_PATH . $filenames["thumbnail"]);
-    $imageBlobProperties    = $storageBlob->putBlob($containerName, $filenames["image"], FILE_UPLOAD_PATH . $filenames["image"]);
-    
-    // set return value
-    $savedUrls              = array();
-    $savedUrls["thumbnail"] = $thumnailBlobProperties->__get("url");
-    $savedUrls["image"]     = $imageBlobProperties->__get("url");
 
-    return $savedUrls;
+    // thumbnail
+    $thumbnailBlobProperties = $storageBlob->putBlob($containerName, $filenames["thumbnail"], FILE_UPLOAD_PATH . $filenames["thumbnail"]);
+    $thumbnailUrl = $thumbnailBlobProperties->__get("url");
+    if (checkNotEmpty($thumbnailUrl)) {
+    	Logger::write("Thumbnail(" . $filenames["thumbnail"] . ") is saved to Widows Azure.");
+    
+    } else {
+    	Logger::write("Thumbnail(" . $filenames["thumbnail"] . ") is not saved to Windows Azure.");
+    	$result["status"] = "false";
+    	$result["error"]  = array(SRV_SYSTEMERROR_NONE);
+    	return $result;
+    }
+
+    // image
+    $imageBlobProperties    = $storageBlob->putBlob($containerName, $filenames["image"], FILE_UPLOAD_PATH . $filenames["image"]);
+    $imageUrl = $imageBlobProperties->__get("url");
+    if (checkNotEmpty($imageUrl)) {
+    	Logger::write("Image(" . $filenames["image"] . ") is saved to Widows Azure.");
+    
+    } else {
+    	Logger::write("Image(" . $filenames["image"] . ") is not saved to Windows Azure.");
+        $storageBlob->deleteBlob($containerName, $filenames["thumbnail"]);
+    	$result["status"] = "false";
+    	$result["error"]  = array(SRV_SYSTEMERROR_NONE);
+    	return $result;
+    }
+    
+    $result["status"] = "true";
+    $result["urls"] = array("thumbnail" => $thumbnailUrl, "image" => $imageUrl);
+    return $result;
 }

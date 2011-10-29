@@ -1,0 +1,37 @@
+<?php
+
+define("USER_EMPTY_EMAIL",             "10101");
+define("USER_EMPTY_PASSWORD",          "10102");
+define("USER_EMPTY_FIRSTNAME",         "10104");
+define("USER_EMPTY_LASTNAME",          "10105");
+define("USER_EMPTY_STREET",            "10106");
+define("USER_EMPTY_CITY",              "10107");
+define("USER_EMPTY_COUNTRY",           "10109");
+define("USER_EMPTY_ZIPCODE",           "10110");
+define("USER_EMPTY_LOCATION_STATE",    "10112");
+define("USER_EMPTY_LOCATION_CITY",     "10113");
+define("USER_EMPTY_ITEMNAME",          "10115");
+define("USER_EMPTY_ITEMDESCRIPTION",   "10116");
+define("USER_EMPTY_ITEMPRICE",         "10117");
+define("USER_EMPTY_SEARCH_VALUE",      "10118");
+define("USER_TOOSHORT_PASSWORD",       "10202");
+define("USER_INVALID_EMAIL",           "10301");
+define("USER_INVALID_PASSWORD",        "10302");
+define("USER_INVALID_FIRSTNAME",       "10304");
+define("USER_INVALID_LASTNAME",        "10305");
+define("USER_INVALID_STREET",          "10306");
+define("USER_INVALID_CITY",            "10307");
+define("USER_INVALID_ZIPCODE",         "10310");
+define("USER_INVALID_PHONENUMBER",     "10311");
+define("USER_INVALID_LOCATION_STATE",  "10312");
+define("USER_INVALID_LOCATION_CITY",   "10313");
+define("USER_INVALID_ITEMNAME",        "10315");
+define("USER_INVALID_ITEMDESCRIPTION", "10316");
+define("USER_INVALID_ITEMPRICE",       "10317");
+define("USER_INVALID_SEARCH_VALUE",    "10318");
+define("USER_UNMATCH_PASSWORD",        "10402");
+define("USER_LOGIN_FAILURE_NONE",      "10699");
+define("USER_TMP_PW_EXPIRED_NONE",     "10799");
+define("APP_SYSTEMERROR_NONE",         "29999");
+define("SRV_SYSTEMERROR_NONE",         "39999");
+define("UNKNOWN_SYSTEMERROR_NONE",     "99999");

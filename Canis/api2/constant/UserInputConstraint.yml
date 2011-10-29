@@ -1,0 +1,57 @@
+users:
+    firstname:
+        max_length: 255
+    lastname:
+        max_length: 255
+    password:
+        min_length: 6
+        max_length: 255
+    zipcode:
+        max_length: 255 
+    country:
+        value:
+            - "USA"
+            - "JAPAN"
+    state:
+        max_length: 255 
+    city:
+        max_length: 255
+    street:
+        max_length: 255
+    phonenumber:
+        max_length: 255
+
+items:
+    itemname:
+        max_length: 255
+    description:
+        max_length: 1000
+    price:
+        max_length: 11
+    currency:
+        value:
+            - "USD"
+            - "JPY"
+    locationtype:
+        value:
+            zipcode:     "ZIPCODE"
+            address:     "ADDRESS"
+            geolocation: "GEOLOCATION"
+    zipcode:
+        max_length: 20
+    state:
+        max_length: 255
+    city:
+        max_length: 255
+    search_value:
+        max_length: 255
+    search_type:
+        value:
+            keyword: "KEYWORD"
+            barcord: "BARCORD"
+    search_order:
+        value:
+            lastmodifieddate_asc:  "LMDASC"
+            lastmodifieddate_desc: "LMDDESC"
+            price_asc:             "PRICEASC"
+            price_desc:            "PRICEDESC"
