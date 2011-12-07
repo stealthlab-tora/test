@@ -1,0 +1,3 @@
+#!/bin/sh
+
+crontab -u dotcloud ~/current/cron/GalaxyCronTab

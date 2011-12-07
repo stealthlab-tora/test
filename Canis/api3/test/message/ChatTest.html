@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<script src="http://js.pusherapp.com/1.9/pusher.min.js"></script>
+<script>
+var pusher = new Pusher('3c15bf2b12d3b1df122c');
+var messages = "";
+
+// create XMLHttpRequest object
+function createHttpRequest(){
+
+  // for IE
+  if(window.ActiveXObject){
+      try {
+          // for MSXML2 or later
+          return new ActiveXObject("Msxml2.XMLHTTP");
+      } catch (e) {
+          try {
+              // for old MSXML
+              return new ActiveXObject("Microsoft.XMLHTTP");
+          } catch (e2) {
+              return null;
+          }
+       }
+  } else if(window.XMLHttpRequest){
+      // for not IE
+      return new XMLHttpRequest();
+  } else {
+      return null;
+  }
+}
+
+
+function send_message() {
+	var http = createHttpRequest();
+	var url = "http://galaxy-tora.dotcloud.com/GalaxyMessageAPI.php";
+	var params = "action=POST&sender=" + document.getElementById("sender").value +
+	             "&receiver=" + document.getElementById("receiver").value +
+	             "&threadid=" + document.getElementById("threadid").value +
+	             "&message=" + document.getElementById("message").value;
+	http.open("POST", url, true);
+
+	//Send the proper header information along with the request
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	http.setRequestHeader("Content-length", params.length);
+	http.setRequestHeader("Connection", "close");
+
+	http.onreadystatechange = function() {//Call a function when the state changes.
+		if(http.readyState == 4 && http.status == 200) {
+			// parser.php response
+			var JSONtext = http.responseText;
+			// convert received string to JavaScript object
+			var JSONobject = JSON.parse(JSONtext);
+			if (JSONobject.status != "true") {
+				alert("error");
+			} else {
+				
+			}
+		}
+	}
+	http.send(params);
+}
+
+
+function access_to_pusher (channelName) {
+	if (pusher.channel(channelName) == null) {
+		var galaxyChannel = pusher.subscribe(channelName);
+		galaxyChannel.bind('NewChatMessage', function(chatInfo) {
+			messages = "<tr><td>" + chatInfo.sender + "</td><td>" + chatInfo.message + "</td></tr>\n" + messages;
+			document.getElementById("messages").innerHTML = "messages\n<table border=\"1\">\n" + "<tr><th>sender</th><th>message</th></tr>\n" + messages + "</table>";
+			document.getElementById("message").value = "";
+		});
+		galaxyChannel.bind('ItemSold', function(soldInfo) {
+            alert("Item is sold");
+		});
+
+	}
+}
+
+function start_chat() {
+	var http = createHttpRequest();
+	var url = "http://galaxy-tora.dotcloud.com/GalaxyMessageAPI.php";
+	var params = "action=GET_CHANNELNAME" +
+	             "&itemid=" + document.getElementById("itemid").value +
+	             "&buyer=" + document.getElementById("buyer").value +
+	http.open("POST", url, true);
+
+	//Send the proper header information along with the request
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	http.setRequestHeader("Content-length", params.length);
+	http.setRequestHeader("Connection", "close");
+
+	http.onreadystatechange = function() {//Call a function when the state changes.
+		if(http.readyState == 4 && http.status == 200) {
+			// parser.php response
+			var JSONtext = http.responseText;
+			// convert received string to JavaScript object
+			var JSONobject = JSON.parse(JSONtext);
+
+			if (JSONobject.status == "true") {
+				access_to_pusher(JSONobject.channelname);
+				goto_chat(JSONobject.threadid);
+			} else {
+				alert("error");
+			}
+		}
+	}
+	http.send(params);
+}
+
+function goto_chat(threadid) {
+	document.getElementById("start_chat").innerHTML = "";
+	document.getElementById("send_message").style.visibility = "visible";
+	document.getElementById("threadid").value = threadid;
+}
+
+</script>
+<title>This is chat test using pusher</title>
+</head>
+<body>
+<h3>This is chat test using pusher
+(The chat history is not shown in this test.)</h3>
+
+<div id="start_chat">
+itemid    : <input type="text" name="itemid" id="itemid" />(This is itemid which buyer wants to buy.  e.g. 17)<br />
+buyer      : <input type="text" name="buyer" id="buyer" />(This is galaxuserid who wants to buy the item.  e.g. 2)<br /><br />
+<input type="button" value="Start chat" onclick="start_chat()" />
+</div>
+
+<div id="send_message" style="visibility:hidden">
+sender    : <input type="text" name="sender" id="sender" />(This is galaxyuserid of seller or buyer.  e.g. 2)<br />
+receiver      : <input type="text" name="receiver" id="receiver" />(This is galaxyuserid of seller or buyer.  e.g. 43)<br />
+threadid  : <input type="text" name="threadid" id="threadid" disabled="disabled" /><br />
+message : <textarea name="message" id="message"></textarea><br /><br />
+<input type="button" value="Send Message" onclick="send_message()" />
+<br /><br />
+
+<div id="messages"></div>
+</div>
+</body>
+</html>
