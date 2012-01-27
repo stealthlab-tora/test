@@ -1,0 +1,27 @@
+git demo
+
+1. create a local branch
+  $ git branch demo
+  $ git checkout demo
+
+  $ vi index.php
+    <?php echo "Thank you for joinin us!\n"; ?>
+
+  $ git add .
+  $ git status
+  $ git commit -m "Change hello message"
+
+2. push to a remote repository
+  $ git push origin demo
+
+3. pull request
+  http://github.com/
+  inline comment: there is a typing miss: joinin
+
+4. fix and merge
+  $ vi index.php
+  $ git commit -am "fix a typing miss"
+  $ git push origin demo
+
+  ship it!
+  merge the pull request
