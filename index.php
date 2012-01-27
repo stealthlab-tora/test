@@ -3,6 +3,6 @@
     <title>Hello World!</title>
   </head>
   <body>
-    <?php echo "I wish you a Happy New Year!\n"; ?>
+thanks for joinin us
   </body>
 </html>
